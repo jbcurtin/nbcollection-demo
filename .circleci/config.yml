@@ -1,5 +1,5 @@
 executors:
-  notebook-builder:
+  nbcollection-builder:
     docker:
     - image: jbcurtin/nbcollection-builder
     resource_class: medium
