@@ -28,7 +28,7 @@ jobs:
     - store_artifacts:
         path: /tmp/nbcollection-ci-artifacts
   Pull Request:
-    executor:
+    executor: nbcollection-builder
     steps:
     - checkout
     - run:
