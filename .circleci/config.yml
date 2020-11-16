@@ -1,0 +1,24 @@
+executors:
+  notebook-builder:
+    docker:
+    - image: jbcurtin/nbcollection-builder
+    resource_class: medium
+    working_directory: ~/repo
+jobs:
+  Metadata Test:
+    executor: nbcollection-builder
+    steps:
+    - checkout
+    - run:
+        command: bash ./.circleci/setup_env.sh
+        name: Setup Environment
+    - run:
+        command: python nbcollection-ci metadata -h
+    - store_artifacts:
+        path: ./pages
+version: 2.1
+workflows:
+  Branch Build:
+    jobs:
+    - Metadata Test
+  version: '2.1'
