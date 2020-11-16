@@ -10,9 +10,6 @@ jobs:
     steps:
     - checkout
     - run:
-        command: bash ./.circleci/setup_env.sh
-        name: Setup Environment
-    - run:
         command: python nbcollection-ci metadata -h
     - store_artifacts:
         path: ./pages
