@@ -1,12 +1,12 @@
 executors:
-  nbcollection-executor:
+  nbcollection-builder:
     docker:
     - image: jbcurtin/nbcollection-builder
     resource_class: medium
     working_directory: ~/repo
 jobs:
   Jdat Notebooks-Asdf Example:
-    executor: notebook-executor
+    executor: nbcollection-builder
     steps:
     - checkout
     - run:
@@ -17,7 +17,7 @@ jobs:
     - store_artifacts:
         path: ./pages
   Jdat Notebooks-Example Notebook:
-    executor: notebook-executor
+    executor: nbcollection-builder
     steps:
     - checkout
     - run:
