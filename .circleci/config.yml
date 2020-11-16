@@ -10,7 +10,7 @@ jobs:
     steps:
     - checkout
     - run:
-        command: python nbcollection-ci metadata -h
+        command: nbcollection-ci metadata -h
     - store_artifacts:
         path: ./pages
 version: 2.1
