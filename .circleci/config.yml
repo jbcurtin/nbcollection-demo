@@ -1,0 +1,36 @@
+executors:
+  nbcollection-executor:
+    docker:
+    - image: jbcurtin/nbcollection-builder
+    resource_class: medium
+    working_directory: ~/repo
+jobs:
+  Jdat Notebooks-Asdf Example:
+    executor: notebook-executor
+    steps:
+    - checkout
+    - run:
+        command: nbcollection-ci build-notebooks --collection-names jdat_notebooks
+          --category-names asdf_example
+        name: Build Jdat Notebooks-Asdf Example notebooks
+        no_output_timeout: 60m
+    - store_artifacts:
+        path: ./pages
+  Jdat Notebooks-Example Notebook:
+    executor: notebook-executor
+    steps:
+    - checkout
+    - run:
+        command: nbcollection-ci build-notebooks --collection-names jdat_notebooks
+          --category-names example_notebook
+        name: Build Jdat Notebooks-Example Notebook notebooks
+        no_output_timeout: 60m
+    - store_artifacts:
+        path: ./pages
+version: 2.1
+workflows:
+  Build:
+    jobs:
+    - Jdat Notebooks-Asdf Example
+    - Jdat Notebooks-Example Notebook
+  version: '2.1'
