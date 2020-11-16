@@ -15,7 +15,7 @@ jobs:
         name: Build Jdat Notebooks-Asdf Example notebooks
         no_output_timeout: 60m
     - store_artifacts:
-        path: ./pages
+        path: /tmp/nbcollection-ci-artifacts
   Jdat Notebooks-Example Notebook:
     executor: nbcollection-builder
     steps:
@@ -26,7 +26,7 @@ jobs:
         name: Build Jdat Notebooks-Example Notebook notebooks
         no_output_timeout: 60m
     - store_artifacts:
-        path: ./pages
+        path: /tmp/nbcollection-ci-artifacts
 version: 2.1
 workflows:
   Build:
