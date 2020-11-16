@@ -16,6 +16,17 @@ jobs:
         no_output_timeout: 60m
     - store_artifacts:
         path: /tmp/nbcollection-ci-artifacts
+  Jdat Notebooks-Background Estimation Imaging:
+    executor: nbcollection-builder
+    steps:
+    - checkout
+    - run:
+        command: nbcollection-ci build-notebooks --collection-names jdat_notebooks
+          --category-names background_estimation_imaging
+        name: Build Jdat Notebooks-Background Estimation Imaging notebooks
+        no_output_timeout: 60m
+    - store_artifacts:
+        path: /tmp/nbcollection-ci-artifacts
   Jdat Notebooks-Example Notebook:
     executor: nbcollection-builder
     steps:
@@ -37,12 +48,12 @@ jobs:
         no_output_timeout: 60m
     - store_artifacts:
         path: /tmp/nbcollection-ci-artifacts
-
 version: 2.1
 workflows:
-  Build:
+  Build Notebooks:
     jobs:
-    - Pull Request
     - Jdat Notebooks-Asdf Example
     - Jdat Notebooks-Example Notebook
+    - Jdat Notebooks-Background Estimation Imaging
+    - Pull Request
   version: '2.1'
