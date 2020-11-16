@@ -27,10 +27,22 @@ jobs:
         no_output_timeout: 60m
     - store_artifacts:
         path: /tmp/nbcollection-ci-artifacts
+  Pull Request:
+    executor:
+    steps:
+    - checkout
+    - run:
+        command: nbcollection-ci pull-request -u $CI_PULL_REQUEST
+        name: Build Pull Request
+        no_output_timeout: 60m
+    - store_artifacts:
+        path: /tmp/nbcollection-ci-artifacts
+
 version: 2.1
 workflows:
   Build:
     jobs:
+    - Pull Request
     - Jdat Notebooks-Asdf Example
     - Jdat Notebooks-Example Notebook
   version: '2.1'
